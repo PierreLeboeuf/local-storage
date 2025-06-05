@@ -22,6 +22,8 @@ if (savedName) {
 function addTask() {
     let taskInputValue = taskInput.value.trim();
     if (taskInputValue !== "") {
+        console.log(tasks);
+
         tasks.push(taskInputValue); // AJOUT DANS LE TABLEAU VIDE TASKS
         render(tasks); // APPEL DE LA FONCTION POUR CREER LA LISTE (li)
         taskInput.value = ""; // EFFACER LE CHAMP
@@ -67,56 +69,33 @@ document.addEventListener("keydown", function (e) {
 ////------------------------------------------------------------------
 
 
-function render(liste) {
-    taskList.innerHTML = "";
-    div.innerHTML = "";
-    for (let i = 0; i < liste.length; i++) {
-        let task = liste[i];
+// function render(liste) {
+//     taskList.innerHTML = "";
+//     div.innerHTML = "";
+//     for (let i = 0; i < liste.length; i++) {
+//         let task = liste[i];
 
-        let list = document.createElement("li");
-        list.textContent = task;
+//         let list = document.createElement("li");
+//         list.textContent = task;
 
-        //REMPLACE LE li PAR UN champ texte EN DOUBLE CLICK
-        // list.addEventListener("dblclick", () => {
-        //     let champText = document.createElement("input");
-        //     list.replaceWith(champText);
-        //     champText.value = task; // garde la valeur du li dans le champ texte
+//         //REMPLACE LE li PAR UN champ texte EN DOUBLE CLICK
+//         list.addEventListener("dblclick", () => {
+//             let champText = document.createElement("input");
+//             list.replaceWith(champText);
+//             champText.value = task; // garde la valeur du li dans le champ texte
 
-        //     //REMPLACE LE champ texte PAR UN li EN APPUYANT SUR ENTREE
-        //     document.addEventListener("keydown", function (e) {
-        //         if (e.key === "Enter") {
-        //             champText.replaceWith(list);
-        //             list.textContent = champText.value;
-        //         }
-        //     })
-        //     // list.innerHTML = champText.value;
-        //     // taskList.append(champText);
-        // })
+//             //REMPLACE LE champ texte PAR UN li EN APPUYANT SUR ENTREE
+//             document.addEventListener("keydown", function (e) {
+//                 if (e.key === "Enter") {
+//                     champText.replaceWith(list);
+//                     list.textContent = champText.value;
 
-        // AJOUT DU BOUTON SUPPRIMER
-        let deleteButton = document.createElement("button");
-        deleteButton.textContent = "❌";
-        deleteButton.title = "Supprimer";
+//                 }
+//             })
+//             // list.innerHTML = champText.value;
+//             // taskList.append(champText);
+//         })
 
-        deleteButton.addEventListener("click", () => {
-            liste.splice(i, 1);
-            localStorage.setItem('tasks', JSON.stringify(liste));
-            render(liste);
-        });
-
-        list.append(deleteButton); // Ajoute le bouton au li
-        taskList.append(list);
-
-        // console.log(tasks.length);
-    };
-
-    let p = document.createElement("p");
-    p.textContent = `${tasks.length} tâches restantes`;
-    div.append(p);
-}
-
-
-// function deleteBtn(){
 //         // AJOUT DU BOUTON SUPPRIMER
 //         let deleteButton = document.createElement("button");
 //         deleteButton.textContent = "❌";
@@ -129,31 +108,66 @@ function render(liste) {
 //         });
 
 //         list.append(deleteButton); // Ajoute le bouton au li
-// }
+//         taskList.append(list);
 
+//         // console.log(tasks.length);
+//     };
+
+//     let p = document.createElement("p");
+//     p.textContent = `${tasks.length} tâches restantes`;
+//     div.append(p);
+// }
 ////------------------------------------------------------------------
 // Même fonction mais avec ForEach
 ////------------------------------------------------------------------
 
-// function render(liste) {
-//     taskList.innerHTML = "";
+function render(liste) {
+    taskList.innerHTML = "";
+    div.innerHTML = "";
+
+    liste.forEach((task, index) => {
+        let list = document.createElement("li");
+        list.textContent = task;
 
 
-//     liste.forEach((task, index) => {
-//         let list = document.createElement("li");
-//         list.textContent = task;
 
-//         let deleteButton = document.createElement("button");
-//         deleteButton.textContent = "❌";
-//         deleteButton.title = "Supprimer";
+        //REMPLACE LE li PAR UN champ texte EN DOUBLE CLICK
+        list.addEventListener("dblclick", () => {
+            let champText = document.createElement("input");
+            champText.classList.add("champText");
+            list.replaceWith(champText);
+            champText.value = task; // garde la valeur du li dans le champ texte
 
-//         deleteButton.addEventListener("click", () => {
-//             liste.splice(index, 1);
-//             localStorage.setItem('tasks', JSON.stringify(liste));
-//             render(liste);
-//         });
+            //REMPLACE LE champ texte PAR UN li EN APPUYANT SUR ENTREE
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    champText.replaceWith(list);
 
-//         list.append(deleteButton); // Ajoute le bouton au li
-//         taskList.append(list);
-//     });
-// }
+
+                    liste[index] = champText.value;
+                    console.log(liste);
+                    localStorage.setItem('tasks', JSON.stringify(liste));
+                    render(liste);
+                }
+            })
+            list.innerHTML = champText.value;
+            taskList.append(champText);
+        })
+        //  AJOUT DU BOUTON SUPPRIMER
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "❌";
+        deleteButton.title = "Supprimer";
+
+        deleteButton.addEventListener("click", () => {
+            liste.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(liste));
+            render(liste);
+        });
+
+        list.append(deleteButton); // Ajoute le bouton au li
+        taskList.append(list);
+    });
+    let p = document.createElement("p");
+    p.textContent = `${tasks.length} tâches restantes`;
+    div.append(p);
+}

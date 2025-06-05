@@ -1,35 +1,121 @@
-/* Style général du bouton de suppression */
-.delete-btn {
-    background-color: #f44336; /* Un rouge vif pour attirer l'attention */
-    color: white; /* Texte blanc pour contraster */
-    border: none; /* Pas de bordure par défaut du bouton */
-    padding: 5px 8px; /* Un peu d'espace autour du "X" */
-    margin-left: 10px; /* Espace à gauche pour le séparer du texte de la tâche */
-    cursor: pointer; /* Indique que le bouton est cliquable */
-    border-radius: 4px; /* Bords légèrement arrondis pour un aspect plus doux */
-    font-weight: bold; /* Le "X" en gras */
-    font-size: 0.8em; /* Une taille de police légèrement plus petite que le texte de la tâche */
-    line-height: 1; /* Assure que le "X" est bien centré verticalement */
-    float: right; /* Fait flotter le bouton à droite de son conteneur li */
+/* Réinitialisation simple */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* text-decoration: none; */
 }
 
+body {
+    background-color: rgb(245, 245, 245);
+    color: rgb(122, 123, 125);
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 30px;
+        border-bottom: 1px solid rgb(238, 37, 41);
+}
+
+/* Style général du bouton de suppression */
+/* .delete-btn { */
+/* background-color: #f44336; Un rouge vif pour attirer l'attention */
+/* color: white; Texte blanc pour contraster */
+/* border: none; Pas de bordure par défaut du bouton */
+/* padding: 5px 8px; Un peu d'espace autour du "X" */
+/* margin-left: 10px; Espace à gauche pour le séparer du texte de la tâche */
+/* cursor: pointer; Indique que le bouton est cliquable */
+/* border-radius: 4px; Bords légèrement arrondis pour un aspect plus doux */
+/* font-weight: bold; Le "X" en gras */
+/* font-size: 0.8em; Une taille de police légèrement plus petite que le texte de la tâche */
+/* line-height: 1; Assure que le "X" est bien centré verticalement */
+/* float: right; Fait flotter le bouton à droite de son conteneur li */
+/* } */
+
 /* Style au survol du bouton */
-.delete-btn:hover {
+/* .delete-btn:hover {
     background-color: #da190b; /* Un rouge plus foncé au survol pour un feedback visuel */
+/* } */
+.newtask{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#taskInput{
+         margin-top: 5px;
+padding: 5px 5px 5px 5px;
+border: 1px solid rgb(8, 188,225 );
+outline-color: rgb(0,129,198);
+border-radius: 5px;
+}
+
+.champText{
+         margin-top: 5px;
+padding: 5px 5px 5px 5px;
+border: 1px solid rgb(8, 188,225 );
+outline-color: rgb(0,129,198);
+border-radius: 5px;
+}
+
+#addBtn{
+ border: none;
+ 
+ /* margin-bottom: 0px;
+ padding-bottom: 0px; */
+}
+
+#taskList {
+    margin-top: 20px;
+    background-color: rgb(230, 230, 230);
+    border: 2px solid rgb(8, 188,225 );
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Optionnel: pour mieux aligner le texte et le bouton dans le li */
 #taskList li {
-    display: flex; /* Utilise flexbox pour un alignement facile */
-    justify-content: space-between; /* Espace le contenu (tâche à gauche, bouton à droite) */
-    align-items: center; /* Aligne les éléments verticalement au centre */
-    padding: 8px 0; /* Un peu de padding vertical pour chaque tâche */
-    border-bottom: 1px solid #eee; /* Une fine ligne de séparation entre les tâches */
-    list-style: none; /* Supprime les puces par défaut des li */
+    display: flex;
+    /* Utilise flexbox pour un alignement facile */
+    justify-content: space-between;
+    /* Espace le contenu (tâche à gauche, bouton à droite) */
+    align-items: center;
+    /* Aligne les éléments verticalement au centre */
+    padding: 8px 0;
+    /* Un peu de padding vertical pour chaque tâche */
+    border-bottom: 1px solid rgb(8, 188,225 );
+    /* Une fine ligne de séparation entre les tâches */
+    list-style: none;
+    /* Supprime les puces par défaut des li */
     width: 50%;
+    /* Indique que le bouton est cliquable */
+    cursor: pointer;
 }
 
 /* Pour le dernier élément li, pour ne pas avoir de bordure en bas */
-/* #taskList li:last-child {
+#taskList li:last-child {
     border-bottom: none;
-} */
+}
+
+#div{
+    margin-top: 20px;
+    color: rgb(238, 37, 41);
+}
+
+#clearBtn{
+    background-color: rgb(230, 230, 230);
+    font-size:larger;
+padding: 5px 50px 5px 50px;
+margin-top: 20px;
+border: 1px solid rgb(238, 37, 41);
+outline-color: rgb(238, 37, 41);
+border-radius: 5px;
+
+}
